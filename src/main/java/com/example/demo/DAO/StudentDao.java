@@ -33,20 +33,21 @@ public class StudentDao {
         return students;
     }
 
-    public static void insert(Student student) {
-        String sql = "INSERT INTO `classroom`.`classroom` (`name`, `dateofbirth`, `adress`, `phone`, `email`, `classroom`) VALUES (?,?,?,?,?,?)";
+    public static boolean insert(Student student) {
+        String sql = "INSERT INTO `classroom`.`classroom` (`name`, `dateofbirth`, `address`, `phone`, `email`, `classroom`) VALUES (?,?,?,?,?,?);";
         try {
             PreparedStatement prepareStatement = connection.prepareStatement(sql);
-            prepareStatement.setString(1, "name");
-            prepareStatement.setDate(2, Date.valueOf("dateofbirth"));
-            prepareStatement.setString(3, "address");
-            prepareStatement.setString(4, "phone");
-            prepareStatement.setString(5, "email");
-            prepareStatement.setString(6, "classroom");
-            prepareStatement.execute();
+            prepareStatement.setString(1,student.getName());
+            prepareStatement.setDate(2, Date.valueOf(student.getDateOfbirth()));
+            prepareStatement.setString(3, student.getAddress());
+            prepareStatement.setString(4, student.getPhone());
+            prepareStatement.setString(5, student.getEmail());
+            prepareStatement.setString(6, student.getClassRoom());
+            return prepareStatement.execute();
 
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
     }
 
@@ -80,11 +81,11 @@ public class StudentDao {
     }
 
     public static List<Student> search(String searchname) {
-        String search = "select * from classroom where name like '%'+?+'%'";
+        String search = "select * from classroom where name like '%"+searchname+"%';";
         List<Student> students = new ArrayList<>();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(search);
-            preparedStatement.setString(1, searchname);
+
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");

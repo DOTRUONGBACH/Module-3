@@ -17,12 +17,15 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 
-
-    <input placeholder="Nhập tên"><button>Search</button>
-    <button data-bs-toggle="modal" data-bs-target="#myModal">Add</button>
+<form action="/search" method="get">
+    <input  placeholder="Nhập tên"  name = "search">
+    <button type="submit" >Search</button>
+    </form>
+    <button data-toggle="modal" data-target="#myModal">Add</button>
     <table class="table">
     <tr>
         <th>Name</th>
@@ -40,7 +43,7 @@
                 <td>${p.address}</td>
                 <td>
                     <a type="button" class="btn btn-success" >Edit</a>
-                    <a type="button" class="btn btn-danger" href="/delete" ?id="${p.id}" >Delete</a>
+                    <a type="button" class="btn btn-danger" href=/delete?id=${p.id} >Delete</a>
                 </td>
             </tr>
         </c:forEach>
@@ -50,38 +53,34 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="container mt-3" style="height: 710px">
-                    <h2>Đăng ký</h2>
-                    <form action="/register" method="post">
+                    <h2>Thêm</h2>
+                    <form action="/home" method="post">
                         <div class="mb-3 mt-3">
-                            <label>User:</label>
-                            <input type="text" class="form-control" placeholder="Enter username" name="username">
+                            <label>Name:</label>
+                            <input style="width: 550px" type="text" class="form-control" placeholder="Enter name" name="name">
                         </div>
                         <div class="mb-3">
-                            <label>Password:</label>
-                            <input type="password" class="form-control" placeholder="Enter password" name="password">
+                            <label>date of birth:</label>
+                            <input style="width: 550px" type="date" class="form-control" placeholder="Enter date" name="dateofbirth">
                         </div>
                         <div class="mb-3">
-                            <label>Full name:</label>
-                            <input type="text" class="form-control" placeholder="Enter full name" name="fullName">
+                            <label>Address</label>
+                            <input style="width: 550px" type="text" class="form-control" placeholder="Enter Address" name="address">
                         </div>
                         <div class="mb-3">
-                            <label>Age:</label>
-                            <input type="number" class="form-control" placeholder="Enter age" name="age">
+                            <label>Phone:</label>
+                            <input style="width: 550px" type=text class="form-control" placeholder="Enter age" name="phone">
                         </div>
                         <div class="mb-3">
-                            <label>Number Phone:</label>
-                            <input type="text" class="form-control" placeholder="Enter number" name="phone">
+                            <label>Classroom:</label>
+                            <input style="width: 550px" type="text" class="form-control" placeholder="Enter classroom" name="classroom">
                         </div>
                         <div class="mb-3">
                             <label>Email:</label>
-                            <input type="text" class="form-control" placeholder="Enter email" name="email">
+                            <input style="width: 550px" type="text" class="form-control" placeholder="Enter email" name="email">
                         </div>
-                        <div class="form-check mb-3">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="remember"> Remember me
-                            </label>
-                        </div>
-                        <button type="submit" class="btn btn-primary" style="text-align: right">Đăng ký</button>
+
+                        <button type="submit" class="btn btn-primary" style="text-align: right">Thêm mới</button>
                         <br>
                     </form>
                 </div>
